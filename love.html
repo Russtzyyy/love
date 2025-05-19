@@ -1,0 +1,100 @@
+<!-- love.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>I Love You!</title>
+  <style>
+    body {
+      background-color: #FFC1DA;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding: 2rem;
+      color: #FF90BB;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    img {
+      width: 300px;
+      max-width: 80%;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #FF90BB;
+      transform: rotate(45deg);
+      animation: floatUp 6s infinite ease-in;
+      opacity: 0.6;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #FF90BB;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        bottom: -20px;
+        opacity: 0.5;
+      }
+      100% {
+        bottom: 100%;
+        transform: translateX(-20px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>I always knew it! I love you mhieeemaaaaa HAHAHAHAHA mwaaa 💕</h1>
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDR6MTVudzgwZzc4eGEyejdpcmc2M3k1cW5jcDRvNnFvMjk4b2RraCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/MDJ9IbxxvDUQM/giphy.gif" alt="hugging cats" />
+
+  <!-- Random floating hearts -->
+  <script>
+    const colors = ["#FF90BB", "#FFC1DA", "#8ACCD5"];
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+      heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      document.body.appendChild(heart);
+    }
+  </script>
+</body>
+</html>

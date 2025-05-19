@@ -1,0 +1,95 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Do You Love Me?</title>
+  <style>
+    body {
+      background-color: #F8F8E1;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding: 2rem;
+      color: #FF90BB;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 3rem;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    #yesBtn {
+      background-color: #FF90BB;
+      color: white;
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #FF90BB;
+    }
+
+    #noBtn {
+      background-color: #8ACCD5;
+      color: white;
+      position: absolute;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .btn {
+        font-size: 1.2rem;
+        padding: 0.8rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Do you love me? 🥺</h1>
+  <div class="buttons">
+    <button class="btn" id="yesBtn">Yes 💖</button>
+    <button class="btn" id="noBtn">No 😢</button>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+
+    noBtn.addEventListener('mouseover', () => {
+      const randomX = Math.floor(Math.random() * (window.innerWidth - 100));
+      const randomY = Math.floor(Math.random() * (window.innerHeight - 50));
+      noBtn.style.left = randomX + 'px';
+      noBtn.style.top = randomY + 'px';
+    });
+
+    document.getElementById('yesBtn').addEventListener('click', () => {
+      window.location.href = "love.html";
+    });
+  </script>
+</body>
+</html>
