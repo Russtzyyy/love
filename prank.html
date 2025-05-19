@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Got You!</title>
+  <style>
+    :root {
+      --dark: #101c0f;
+      --olive: #1d3217;
+      --green: #255f38;
+      --mint: #1f7d53;
+      --text: #ffffff;
+      --accent: #00ff99;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      background-color: var(--dark);
+      overflow: hidden;
+    }
+
+    .loading-screen {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--olive), var(--green));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: var(--text);
+      animation: fadeOut 1s ease-in-out 7s forwards;
+    }
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 8px solid var(--mint);
+      border-top: 8px solid var(--text);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    .question-container,
+    .result-container {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      gap: 20px;
+      color: var(--text);
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .question-container h1,
+    .result-container h1 {
+      font-size: 1.8rem;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .result-container img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px var(--mint);
+      animation: popIn 1s ease-out;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 300px;
+      position: relative;
+    }
+
+    .btn {
+      padding: 14px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 12px;
+      background-color: var(--mint);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .btn:hover {
+      background-color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading screen -->
+  <div class="loading-screen">
+    <div class="loader"></div>
+    <h2>Loading... neig please wait cuhhh</h2>
+  </div>
+
+  <!-- Question -->
+  <div class="question-container" id="questionContainer">
+    <h1 id="questionText">Are you itum right? 🥺</h1>
+    <div class="buttons">
+      <button class="btn" id="yesBtn">Yes 💖</button>
+      <button class="btn" id="noBtn">No 😢</button>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="result-container" id="resultContainer">
+    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2RzbGZsemMxYzQ4eTZqaDBnY2p3dHBkc3VsZjA1c2dlaXJkeGpiNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fvoFmNuMsI29Rt2GGN/giphy.gif" alt="Momoi Meme" />
+    <h1>I got you you itum tayum uunai  HAHAHAHAHAH 😂</h1>
+  </div>
+
+  
+  <script>
+    const questionText = document.getElementById('questionText');
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const questionContainer = document.getElementById('questionContainer');
+    const resultContainer = document.getElementById('resultContainer');
+    const boingSound = document.getElementById('boingSound');
+
+    // Show question after loading
+    setTimeout(() => {
+      document.querySelector('.loading-screen').style.display = 'none';
+      questionContainer.style.display = 'flex';
+    }, 7000);
+
+    let questionRepeat = true;
+    let moved = false;
+
+    noBtn.addEventListener('click', () => {
+      boingSound.play();
+      if (questionRepeat) {
+        questionText.textContent = 'Are you sure? 😭';
+        questionRepeat = false;
+      } else {
+        noBtn.style.position = 'absolute';
+        noBtn.style.left = `${Math.random() * 80 + 10}%`;
+        noBtn.style.top = `${Math.random() * 80 + 10}%`;
+        moved = true;
+      }
+    });
+
+    yesBtn.addEventListener('click', () => {
+      questionContainer.style.display = 'none';
+      resultContainer.style.display = 'flex';
+      boingSound.pause();
+      boingSound.currentTime = 0;
+    });
+  </script>
+</body>
+</html>
